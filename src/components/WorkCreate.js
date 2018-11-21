@@ -52,6 +52,7 @@ class WorkCreate extends Component {
 
     return (
       <View  style={styles.container}>
+        <View>
         <Button
          buttonStyle={styles.saveBtn}
            titleStyle={{fontWeight: 'bold', fontFamily:'regular', paddingLeft:20}}
@@ -59,10 +60,13 @@ class WorkCreate extends Component {
            title={'Save'}
            onPress={this.onSave.bind(this)}/>
            />
-          <View style={{backgroundColor:this.randomHex(params.id), width:SCREEN_WIDTH -20 ,marginLeft:10, padding:10}}>
-            <Image source={{uri:topic}} style={styles.imageStyle}></Image>
           </View>
           <View>
+          <View style={{backgroundColor:this.randomHex(params.id), width:SCREEN_WIDTH, padding:10}}>
+            <Image source={{uri:topic}} style={styles.imageStyle}></Image>
+          </View>
+          </View>
+          <View style={{backgroundColor:this.randomHex(params.id),opacity:.45}}>
             <TextEditor
               onChangeText={this.onChangeText.bind(this)}
               value = {"Write on..."}/>

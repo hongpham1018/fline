@@ -25,7 +25,7 @@ class ListItem extends Component {
       <View>
       <TouchableWithoutFeedback onPress={()=> this.onRowPress()}>
           <View style = {styles.itemContainer}>
-              <View style={{width:SCREEN_WIDTH, backgroundColor:this.randomHex(id), padding:20}}><Image source={{uri:topic}}  style={styles.imageStyle}/>
+              <View style={{width:SCREEN_WIDTH, backgroundColor:this.randomHex(id), padding:10}}><Image source={{uri:topic}}  style={styles.imageStyle}/>
               </View>
               <View style={styles.contentContainer}><Text style={styles.contentStyle}> {content}</Text></View>
           </View>

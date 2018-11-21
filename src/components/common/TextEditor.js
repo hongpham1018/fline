@@ -39,6 +39,7 @@ const styles = {
     marginRight:10,
     padding:20,
     height:SCREEN_HEIGHT - 200,
+    marginTop:-30,
     borderRadius:10,
     fontSize:18
   },
