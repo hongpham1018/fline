@@ -14,7 +14,7 @@ const SCREEN_HEIGHT=Dimensions.get('window').height;
 class WorkCreate extends Component {
   constructor(props) {
       super(props);
-      console.log("---constructor:")
+
   }
 
 
@@ -36,6 +36,10 @@ class WorkCreate extends Component {
     const id = navigation.getParam('id')
     this.props.createWorkSave({topic, content, id},()=>{this.props.navigation.navigate('works')})
   }
+  randomHex = (id) => {
+    let hexValue = ["#4a9ff5","#a1c45a","#ffcd3c","#5ad0ff","#a1c45a","#68dfc4","#fce199","#84a1be"]
+     return (hexValue[id % 8])
+  }
 
   render() {
       const {content, navigation} = this.props;
@@ -48,21 +52,22 @@ class WorkCreate extends Component {
 
     return (
       <View  style={styles.container}>
-          <View><Image source={{uri:topic}} style={styles.topicImage}></Image>
+        <Button
+         buttonStyle={styles.saveBtn}
+           titleStyle={{fontWeight: 'bold', fontFamily:'regular', paddingLeft:20}}
+           underlayColor="transparent"
+           title={'Save'}
+           onPress={this.onSave.bind(this)}/>
+           />
+          <View style={{backgroundColor:this.randomHex(params.id), width:SCREEN_WIDTH -20 ,marginLeft:10, padding:10}}>
+            <Image source={{uri:topic}} style={styles.imageStyle}></Image>
           </View>
           <View>
             <TextEditor
               onChangeText={this.onChangeText.bind(this)}
-              value = {"content"}/>
+              value = {"Write on..."}/>
           </View>
-          <Button
-           buttonStyle={styles.saveBtn}
-             titleStyle={{fontWeight: 'bold', fontFamily:'regular'}}
-             underlayColor="transparent"
-             title={'Save'}
-             onPress={this.onSave.bind(this)}/>
 
-           />
         </View>
     );
   }
@@ -72,27 +77,25 @@ const styles = {
     flex:1,
     flexDirection:'column',
     justifyContent:'flex-start',
-    alignItems:'flex-start'
+    alignItems:'flex-start',
+    paddingTop:40
   },
 
-  topicImage:{
-    padding:4,
-    marginLeft:20,
-    minWidth:200,
-    height:200,
+  imageStyle:{
+    width:120,
+    padding:20,
+    height:120,
   },
   saveBtn: {
-    backgroundColor:'transparent',
+    backgroundColor:'#ff9234',
+    borderWidth: 2,
     borderColor: 'white',
     borderRadius: 40,
     height: 45,
-    borderWidth: 1,
-    width: 200
-  },
-
+    width: 120
+  }
 }
 mapStateToProps = (state)=>{
-  console.log("---mapping")
     return {content:state.works.content};
 }
 export default connect(mapStateToProps, {createWorkTextChanged, createWorkSave})(WorkCreate)

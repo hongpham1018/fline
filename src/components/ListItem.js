@@ -8,31 +8,26 @@ const SCREEN_HEIGHT=Dimensions.get('window').height;
 class ListItem extends Component {
   constructor(props){
     super(props);
-    console.log("constructor:")
-    console.dir(this.props.work)
   }
   onRowPress() {
     const {id, topic, content} = this.props.work.item;
-
-    console.dir(this.props.work.item.topic);
     this.props.itemNavigation.navigate('createWork', {id, topic, content});
-}
+  }
+  randomHex = (id) => {
+    let hexValue = ["#4a9ff5","#a1c45a","#ffcd3c","#5ad0ff","#a1c45a","#68dfc4","#fce199","#84a1be"]
+     return (hexValue[id % 8])
+  }
+
   render() {
     const { id, content, topic } = this.props.work.item;
-    console.log(content)
+
     return (
       <View>
-      <TouchableWithoutFeedback onPress={()=>
-            this.onRowPress()}>
-          <View>
+      <TouchableWithoutFeedback onPress={()=> this.onRowPress()}>
           <View style = {styles.itemContainer}>
-              <Image source={{uri:topic}}  style={styles.imageStyle}/>
-              <Text style={styles.contentContainer}>
-                {content}
-              </Text>
-
-            </View>
-
+              <View style={{width:SCREEN_WIDTH, backgroundColor:this.randomHex(id), padding:20}}><Image source={{uri:topic}}  style={styles.imageStyle}/>
+              </View>
+              <View style={styles.contentContainer}><Text style={styles.contentStyle}> {content}</Text></View>
           </View>
       </TouchableWithoutFeedback>
       </View>
@@ -41,27 +36,29 @@ class ListItem extends Component {
 }
 
 const styles = {
-  container:{
-    flex: 1,
-    flexDirection:'row',
-    alignItems:'center',
-
-    justifyContent:'center',
-  },
   itemContainer: {
-    flex: 1,
-    flexDirection:'row',
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'flex-start',
     alignItems:'flex-start',
-    width:SCREEN_WIDTH - 20,
-  justifyContent:'flex-start',
-    backgroundColor:'white',
+
+    flexShrink:0
   },
   imageStyle:{
-    width:150,
-    height:150,
+    width:120,
+    height:120,
+
+  },
+  imageContainer:{
+    backgroundColor:'white'
+  },
+  contentStyle:{
+    padding:20,
+    color:'black',
   },
   contentContainer:{
-    color:'red'
+
+    width:SCREEN_WIDTH
   }
 };
 

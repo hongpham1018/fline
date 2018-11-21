@@ -30,9 +30,8 @@ class TopicItem extends Component {
       <View>
       <TouchableWithoutFeedback onPress={()=>
             this.onRowPress()}>
-      <View style={styles.itemContainer}>
+      <View>
       <Image source={{uri:topic}}  style={styles.imageStyle}/>
-
       </View>
       </TouchableWithoutFeedback>
       </View>
@@ -40,19 +39,9 @@ class TopicItem extends Component {
   }
 }
 const styles = {
-    itemContainer: {
-      flex: 1,
-      flexDirection:'column',
-      alignItems:'center',
-      justifyContent:'center',
-
-
-      width:SCREEN_WIDTH - 20,
-      backgroundColor:'white',
-    },
     imageStyle:{
-      width:150,
-      height:150,
+      width:130,
+      height:130,
     }
   }
 

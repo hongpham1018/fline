@@ -20,7 +20,6 @@ class TopicsList extends Component {
   }
   componentWillMount(){
      this.props.fetchTopics();
-     console.dir(this.props.topics)
 
   }
   static navigationOptions = ({navigation}) =>{
@@ -61,11 +60,12 @@ class TopicsList extends Component {
   _setRandomNumberToState = () => {
    this.setState({ randomNumber: this.randomPick(50)});
  };
-
+ randomHex = (id) => {
+   let hexValue = ["#4a9ff5","#a1c45a","#ffcd3c","#5ad0ff","#a1c45a","#68dfc4","#fce199","#84a1be"]
+    return (hexValue[id % 8])
+ }
   render() {
-
-    console.log("topicLists rendering")
-    console.dir(this.props.topicsList);/*
+/*
   let one = this.props.topicsList.filter(value=>{
         if(this.state.randomNumber == value.id)
           return value;
@@ -82,13 +82,14 @@ class TopicsList extends Component {
       <ScrollView>
         <FlatList numColumns="2" contentContainerStyle={styles.topicContainer} data={this.props.topicsList}
           renderItem ={this.renderItem.bind(this)}
-          keyExtractor={(item, index) => item.key}/>
+          keyExtractor={(item, index) => index}/>
       </ScrollView>
     )
   }
  //}
   renderItem(topic){
-    return <View style={styles.itemStyle}><TouchableOpacity><TopicItem topic={topic}
+
+    return <View style={{backgroundColor:this.randomHex(topic.item.id), padding:20, margin:5}}><TouchableOpacity><TopicItem topic={topic}
       itemNavigation={this.props.navigation}/></TouchableOpacity></View>
   }
   renderItem2(topic){
@@ -100,16 +101,11 @@ class TopicsList extends Component {
 const styles = StyleSheet.create({
   topicContainer:{
     flex:1,
-    alignItems:'center',
     flexDirection:'row',
     justifyContent:'center',
     flexWrap:'wrap',
-    width:SCREEN_WIDTH
-  },
-  itemStyle:{
-    height:160,
-    width:160,
-    margin:4,
+    width:SCREEN_WIDTH,
+    alignItems:'center'
   },
   imageSelectContainer:{
     flex:1,

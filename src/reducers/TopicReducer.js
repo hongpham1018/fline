@@ -7,8 +7,6 @@ export default (state=INITIAL_STATES, action)=>{
     case SELECT_TOPIC:
       return {...state, selectedTopic:action.selectedTopic}
     case FETCH_TOPICS_SUCCESS:
-       console.log("-------topic reduce");
-       console.dir(action.payload)
         return action.payload;
 
     default: return {state}

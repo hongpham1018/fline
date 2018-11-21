@@ -50,6 +50,5 @@ export const createAccount = ({email, password, username}, callback)=>{
      }).catch(error=>createUserFailed(error, dispatch));
    }
   const createUserFailed=(error, dispatch)=>{
-    console.dir(error)
     dispatch({type:CREATE_ACCOUNT_FAIL, payload:error.code})
   }

@@ -93,7 +93,7 @@ class  LoginForm extends Component {
         <KeyboardAvoidingView behavior='position'>
               <View style={styles.titleContainer}>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={styles.titleText}>Write On!</Text>
+                  <Text style={styles.titleText}>Freeline</Text>
                 </View>
               </View>
               <View style={{paddingBottom:100}}>
@@ -258,9 +258,9 @@ const styles = StyleSheet.create({
   titleContainer: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent:'center',
+    justifyContent:'flex-start',
     backgroundColor: 'transparent',
-    justifyContent: 'center'
+    justifyContent: 'flex-end'
 
   },
   formContainer: {

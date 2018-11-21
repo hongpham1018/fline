@@ -41,27 +41,27 @@ class WorksList extends Component {
 render() {
   return (
       <ScrollView>
-        <FlatList numColumns="1" contentContainerStyle={styles.workContainer} data={this.props.worksList}
+        <FlatList contentContainerStyle={styles.workContainer} data={this.props.worksList}
           renderItem ={this.renderItem.bind(this)}
-          keyExtractor={(item, index) => item.key}/>
+          keyExtractor={(item, index) => index}/>
       </ScrollView>
     )
  }
   renderItem(work){
-
-    return <View><TouchableOpacity><ListItem work={work}
-      itemNavigation={this.props.navigation}/></TouchableOpacity></View>
+    return <View style={styles.imageStyle}><TouchableOpacity>
+    <ListItem work={work} itemNavigation={this.props.navigation}/>
+      </TouchableOpacity></View>
   }
 }
 const styles = StyleSheet.create({
   workContainer:{
     flex:1,
-    alignItems:'center',
+    alignItems:'flex-start',
     flexDirection:'column',
-    justifyContent:'center',
-
-    borderWidth:1,
+    justifyContent:'flex-start',
     marginTop:100
+  },imageStyle:{
+
   }
 });
 const mapStateToProps = (state) => {

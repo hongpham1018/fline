@@ -38,7 +38,7 @@ const mainTab = createBottomTabNavigator ({
 })
 
 export default createBottomTabNavigator({
-  works: { screen: WorksList },
+  //works: { screen: WorksList },
   login: { screen: LoginForm, navigationOptions:{
     title: "Login",
     tabBarVisible:false
@@ -53,6 +53,6 @@ export default createBottomTabNavigator({
       tabBarVisible:false
   }
 },{
-    initialRouteName: "works"
+    initialRouteName: "login"
   }
 )
