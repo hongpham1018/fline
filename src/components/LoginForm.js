@@ -30,22 +30,20 @@ const BG_IMAGE = require('../../assets/images/cyan3.jpg');
 class  LoginForm extends Component {
 
   constructor(props) {
-    super(props);
 
+    super(props);
+    console.log("====")
+    console.log(this.props.loggedIn)
+        console.log("++")
     this.state = {
       fontLoaded: false,
       isLoading: false,
     };
-
   }
 
-  navigationOptions = ({ navigation }) => {
-  let tabBarVisible = false;
-
-  return {
-    tabBarVisible,
-  };
-};
+  static navigationOptions = {
+    header: null
+  }
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -100,7 +98,7 @@ class  LoginForm extends Component {
               <View style={styles.leftContainer}>
                 <Button
                  buttonStyle={styles.signUpBtn}
-                   titleStyle={{fontWeight: 'bold', fontFamily:'regular'}}
+                   titleStyle={{fontWeight: 'bold'}}
                    underlayColor="transparent"
                    title={'Create Account'}
                    iconRight
@@ -166,7 +164,7 @@ class  LoginForm extends Component {
                 <View style={styles.leftContainer}>
                   <Button
                    buttonStyle={styles.signInBtn}
-                     titleStyle={{fontWeight: 'bold', fontFamily:'regular'}}
+                     titleStyle={{fontWeight: 'bold'}}
                      underlayColor="transparent"
                      title={'Login'}
                      iconRight
@@ -240,7 +238,7 @@ const styles = StyleSheet.create({
 
   signInBtn: {
     backgroundColor:'#ff9234',
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'white',
     borderRadius: 40,
     height: 45,

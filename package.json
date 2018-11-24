@@ -30,7 +30,7 @@
     "react-native-webview-bridge-updated": "^1.0.9",
     "react-native-webview-quilljs": "^0.8.36",
     "react-native-zss-rich-text-editor": "^1.1.0",
-    "react-navigation": "^2.18.1",
+    "react-navigation": "^3.0.0",
     "react-navigation-material-bottom-tabs": "^0.4.0",
     "react-quill": "^1.3.2",
     "react-redux": "^5.0.7",

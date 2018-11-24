@@ -38,8 +38,8 @@ export const fetchWorksList = ()=>{
   const {currentUser} = firebase.auth();
   return (dispatch)=>{
     https://manager-f3aca.firebaseio.com/work/N1s4KikejJQOLYKLeNp2FF5OR2K2
-     //firebase.database().ref(`/work/${currentUser.uid}/works`).on("value", snapshot => {
-     firebase.database().ref(`/work/N1s4KikejJQOLYKLeNp2FF5OR2K2/works`).on("value", snapshot => {
+     firebase.database().ref(`/work/${currentUser.uid}/works`).on("value", snapshot => {
+     //firebase.database().ref(`/work/N1s4KikejJQOLYKLeNp2FF5OR2K2/works`).on("value", snapshot => {
       dispatch({type: WORKS_FETCH_SUCCESS, payload: snapshot.val()})
     })
   }

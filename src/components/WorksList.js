@@ -28,6 +28,7 @@ class WorksList extends Component {
   static navigationOptions = ({navigation}) =>{
 
     return  {
+    
       title: 'My Works',
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon

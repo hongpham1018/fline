@@ -20,11 +20,18 @@ class TopicsList extends Component {
   }
   componentWillMount(){
      this.props.fetchTopics();
-
   }
   static navigationOptions = ({navigation}) =>{
 
     return {
+
+      tabBarVisible:true,
+      title:"Topic List",
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon
+          name={focused ? 'list' : 'list'}
+          size={30}
+        />),
 
       headerStyle: {
          backgroundColor: '#fff',
@@ -37,6 +44,7 @@ class TopicsList extends Component {
          fontWeight: 'bold',
        },
         headerTitle: "Choose Your Inspiration",
+        headerLeft: null,
 
         headerRight:(<Icon name="refresh" size={30}
         onPress={navigation.getParam('randomNumber')
@@ -78,9 +86,11 @@ class TopicsList extends Component {
           keyExtractor={(item, index) => item.key}/>
       </ScrollView>
     )}else{*/
+    console.log("-----topicList:")
+
   return (
-      <ScrollView>
-        <FlatList numColumns="2" contentContainerStyle={styles.topicContainer} data={this.props.topicsList}
+      <ScrollView syle={styles.topicContainer} >
+        <FlatList numColumns="2"  data={this.props.topicsList}
           renderItem ={this.renderItem.bind(this)}
           keyExtractor={(item, index) => index}/>
       </ScrollView>
@@ -103,7 +113,7 @@ const styles = StyleSheet.create({
     flex:1,
     flexDirection:'row',
     justifyContent:'center',
-    flexWrap:'wrap',
+
     width:SCREEN_WIDTH,
     alignItems:'center'
   },
@@ -124,6 +134,8 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = (state) => {
+  console.log("--state mapping:")
+  console.dir(state.topics)
   return {topicsList: state.topics};
 }
 export default connect(mapStateToProps, {fetchTopics})(TopicsList);

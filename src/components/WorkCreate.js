@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {View, Text, Image, Dimensions, ImageBackground, Button} from 'react-native'
+import {View, Text, Image, Dimensions, ImageBackground} from 'react-native'
+import {Button} from 'react-native-elements';
 import {CardSection,Card, TextEditor} from './common';
 import {connect} from 'react-redux';
 import {Font} from 'expo';
@@ -17,13 +18,34 @@ class WorkCreate extends Component {
 
   }
 
-
   static navigationOptions = ({navigation}) => {
-    return {
-      tabBarVisible:true,
+     return {
+       headerStyle: {
+          backgroundColor: '#fff',
+        },
+       headerTintColor: 'black',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+         headerTitle: "Create",
+         headerRight:(<Button title="Save"  onPress={navigation.getParam('createWorkSave')}/>),
+      //   onPress={navigation.getParam('randomNumber')}/>),
+      //   headerRight:(<Button title="Save"  onPress={this.onSave}/>),
+         tabBarVisible:true,
 
-      }
- }
+       }
+  }
+  componentDidMount(){
+
+    this.props.navigation.setParams({createWorkSave:this.saveWork})
+  }
+  saveWork = () =>{
+    console.log("calling saving work")
+    const {content, navigation} = this.props;
+    const topic = navigation.getParam('topic');
+    const id = navigation.getParam('id')
+    this.props.createWorkSave({topic, content, id},()=>{this.props.navigation.navigate('works')})
+  }
 
   onChangeText(text){
     this.props.createWorkTextChanged(text)
@@ -31,10 +53,8 @@ class WorkCreate extends Component {
   }
 
   onSave(){
-    const {content, navigation} = this.props;
-    const topic = navigation.getParam('topic');
-    const id = navigation.getParam('id')
-    this.props.createWorkSave({topic, content, id},()=>{this.props.navigation.navigate('works')})
+
+
   }
   randomHex = (id) => {
     let hexValue = ["#4a9ff5","#a1c45a","#ffcd3c","#5ad0ff","#a1c45a","#68dfc4","#fce199","#84a1be"]
@@ -52,24 +72,23 @@ class WorkCreate extends Component {
 
     return (
       <View  style={styles.container}>
-        <View>
+        <View style={{flex:1, flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end'}}>
         <Button
-         buttonStyle={styles.saveBtn}
-           titleStyle={{fontWeight: 'bold', fontFamily:'regular', paddingLeft:20}}
-           underlayColor="transparent"
+          buttonStyle={styles.saveBtn}
+           titleStyle={{fontWeight: 'bold', color:'black'}}
            title={'Save'}
            onPress={this.onSave.bind(this)}/>
-           />
-          </View>
-          <View>
-          <View style={{backgroundColor:this.randomHex(params.id), width:SCREEN_WIDTH, padding:10}}>
-            <Image source={{uri:topic}} style={styles.imageStyle}></Image>
-          </View>
-          </View>
+        </View>
+          <View style={{backgroundColor:this.randomHex(params.id),
+                borderWidth:1,
+                borderColor:'white',
+                width:SCREEN_WIDTH - 40}}>
+                <Image source={{uri:topic}} style={styles.imageStyle}></Image>
+           </View> //image container
           <View style={{backgroundColor:this.randomHex(params.id),opacity:.45}}>
             <TextEditor
               onChangeText={this.onChangeText.bind(this)}
-              value = {"Write on..."}/>
+              value = ""/>
           </View>
 
         </View>
@@ -80,23 +99,18 @@ const styles = {
   container:{
     flex:1,
     flexDirection:'column',
-    justifyContent:'flex-start',
-    alignItems:'flex-start',
-    paddingTop:40
+    justifyContent:'center',
+    alignItems:'center',
   },
-
   imageStyle:{
     width:120,
-    padding:20,
+    padding:5,
     height:120,
+    margin:10
   },
   saveBtn: {
-    backgroundColor:'#ff9234',
-    borderWidth: 2,
-    borderColor: 'white',
-    borderRadius: 40,
-    height: 45,
-    width: 120
+    backgroundColor:'white',
+    marginLeft:SCREEN_WIDTH - 120
   }
 }
 mapStateToProps = (state)=>{

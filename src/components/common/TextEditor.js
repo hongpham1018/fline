@@ -6,16 +6,17 @@ const SCREEN_HEIGHT=Dimensions.get('window').height;
 
 const TextEditor = ({onChangeText, value}) => {
  return (
-    <View style ={styles.container}>
+    <View>
 
            <TextInput style={styles.textAreaStyle}
               onChangeText={onChangeText}
+              placeholder={"Write On !"}
               value={value}
               multiline = {true}
               numberOfLines = {60}
               lineHeight={25}
               autoCorrect = {false}
-              disableFullscreenUI = {true}
+              disableFullscreenUI = {false}
               blurOnSubmit={true}
               keyboardAppearance='light'
            />
@@ -24,25 +25,14 @@ const TextEditor = ({onChangeText, value}) => {
 }
 
 const styles = {
-  container:{
-    flex:1,
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center'
-  },
   textAreaStyle: {
-    borderColor:'#929aab',
-    backgroundColor:'#d3d5fd',
-    borderWidth:2,
-    width:SCREEN_WIDTH - 20,
-    marginLeft:10,
-    marginRight:10,
-    padding:20,
-    height:SCREEN_HEIGHT - 200,
-    marginTop:-30,
+    borderColor:'black',
+    borderWidth:1,
+    width:SCREEN_WIDTH-40,
+    height:SCREEN_HEIGHT - 300,
     borderRadius:10,
     fontSize:18
-  },
+  }
 }
 
 export {TextEditor}

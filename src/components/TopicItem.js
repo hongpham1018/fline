@@ -16,7 +16,7 @@ class TopicItem extends Component {
     }
   onRowPress() {
     const {topic, id} = this.props.topic.item;
-       this.props.itemNavigation.navigate('createWork', {
+    this.props.itemNavigation.navigate('createWork', {
            topic:topic,
            content: '',
            id:id,

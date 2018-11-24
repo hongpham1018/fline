@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage} from 'react-native';
 import ReduxThunk from 'redux-thunk';
 import { Header, Spinner, Button } from './src/components/common/';
 //import LoginForm from  './src/components/LoginForm';
@@ -8,12 +8,12 @@ import firebase from 'firebase';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import reducers from './src/reducers';
-import BottomBar from './src/components/common/bottomBar';
-
+import AppNavigator from './src/components/common/AppNavigator';
+console.disableYellowBox = true;
 export default class App extends React.Component {
-  state = {loggedIn:false};
 
  componentWillMount(){
+    
     firebase.initializeApp({
       apiKey: "AIzaSyCNPQqXEcjIv5VQCcTQKw2zUFgQyPygxZk",
       authDomain: "manager-f3aca.firebaseapp.com",
@@ -24,21 +24,18 @@ export default class App extends React.Component {
   });
   firebase.auth().onAuthStateChanged(user =>{
     if(user){
-      this.setState({loggedIn:true})
-    }else this.setState({loggedIn:false})
+      AsyncStorage.setItem("loggedIn", "1")
+    }else {
+
+      AsyncStorage.setItem("loggedIn","0")
+    }
   })
-
   }
-
-
   render() {
-
 
     return (
       <Provider style = {styles.container} store={store}>
-        <BottomBar />
-
-
+        <AppNavigator />
       </Provider>
 
     );
